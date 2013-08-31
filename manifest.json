@@ -1,13 +1,28 @@
 {
     "id": "ToxicBonto",
     "name": "Toxic Bonto",
-    "description": "",
+    "description": "You like Bonto, you'll like Toxic Bonto!",
     "teamName": "",
     "credits": [
         {
-            "name": "X",
-            "job": "X",
-            "url": "https://twitter.com/X"
+            "name": "Arthur Brogniart",
+            "job": "Game Developer",
+            "url": ""
+        },
+        {
+            "name": "Bruno Galliez",
+            "job": "Game Developer",
+            "url": "http://www.larecreduweb.fr/"
+        },
+        {
+            "name": "K\uc3a9vin Aubert",
+            "job": "Graphic Designer",
+            "url": ""
+        },
+        {
+            "name": "Pierrot Evrard",
+            "job": "Game Designer",
+            "url": "https://twitter.com/lxxps"
         }
     ]
 }
