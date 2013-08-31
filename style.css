@@ -1,0 +1,185 @@
+.box{
+	position: relative;
+	-webkit-transition:top 300ms;
+	-webkit-transform-style:preserve-3d;
+	-webkit-transform: rotateY(30deg);
+}
+
+.box>div{
+	width:100px;
+	height:100px;
+	position:absolute;
+	background-color:#f2e587 ;
+}
+
+.front{
+	z-index:10;
+	box-shadow: -8px -5px 24px -1px rgba(3,3,3,0.4) inset;
+}
+.front:before{
+	content: '';
+	display: block;
+	width: 20px;
+	height: 20px;
+	top: 22px;
+	left: 10px;
+	border: solid 4px #D1CEB8;
+	position: absolute;
+	background: rgba(59, 117, 64, 0.53);
+}
+.top{
+	box-shadow: -8px -5px 24px -1px rgba(3,3,3,0.4) inset;
+	-webkit-transform: rotateX(-90deg);
+	-webkit-transform-origin-x: center;
+	-webkit-transform-origin-y: top;
+	-webkit-transform-style: preserve-3d;
+}
+.bottom{
+	-webkit-transform: rotateX(90deg);
+	-webkit-transform-origin-x: center;
+	-webkit-transform-origin-y: bottom;
+	-webkit-transform-style: preserve-3d;
+}
+.right{
+	-webkit-transform: rotateY(-90deg);
+	-webkit-transform-origin-x: right;
+	-webkit-transform-origin-y: center;
+	-webkit-transform-style: preserve-3d;
+}
+.left{
+	box-shadow: -8px -5px 24px -1px rgba(3,3,3,0.4) inset;
+	-webkit-transform: rotateY(90deg);
+	-webkit-transform-origin-x: left;
+	-webkit-transform-origin-y: center;
+	-webkit-transform-style: preserve-3d;
+}
+
+.plate{
+	position:absolute;
+	top:200px;
+
+	-webkit-perspective:1000;
+	-webkit-perspective-origin: center -200px;
+}
+
+
+.one{
+	-webkit-transform : translate3D(16.67%,0,0) rotateY(30deg);
+	z-index:7;
+}
+.two{
+	-webkit-transform : translate3D(50%,0,0) rotateY(30deg);
+	z-index:7;
+}
+.three{
+	-webkit-transform : translate3D(83.33%,0,0) rotateY(30deg);
+	z-index:7;
+}
+
+.up{
+	top : -200px;
+}
+
+.one-from-two{
+	z-index:0;
+	-webkit-animation: two-to-one 600ms ease-in-out;
+	-webkit-transform : translate3D(16.67%,0,0) rotateY(30deg)
+}
+.one-from-three{
+	z-index:0;
+	-webkit-animation: three-to-one 600ms ease-in-out;
+	-webkit-transform : translate3D(16.67%,0,0) rotateY(30deg)
+}
+.two-from-one{
+	z-index:14;
+	-webkit-animation: one-to-two 600ms ease-in-out;
+	-webkit-transform : translate3D(50%,0,0) rotateY(30deg)
+}
+.two-from-three{
+	z-index:0;
+	-webkit-animation: three-to-two 600ms ease-in-out;
+	-webkit-transform : translate3D(50%,0,0) rotateY(30deg)
+}
+.three-from-two{
+	z-index:14;
+	-webkit-animation: two-to-three 600ms ease-in-out;
+	-webkit-transform : translate3D(83.33%,0,0) rotateY(30deg)
+}
+.three-from-one{
+	z-index:14;
+	-webkit-animation: one-to-three 600ms ease-in-out;
+	-webkit-transform : translate3D(83.33%,0,0) rotateY(30deg)
+}
+
+@-webkit-keyframes one-to-two{
+	0%{
+		-webkit-transform : translate3D(16.67%,0,0) rotateY(30deg)
+	}
+	50%{
+		-webkit-transform : translate3D(33.34%,0,200px) rotateY(30deg)
+	}
+	100%{
+		-webkit-transform : translate3D(50%,0,0) rotateY(30deg)
+	}
+}
+
+@-webkit-keyframes two-to-one{
+	0%{
+		-webkit-transform : translate3D(50%,0,0) rotateY(30deg)
+	}
+	50%{
+		-webkit-transform : translate3D(33.34%,0,-200px) rotateY(30deg)
+	}
+	100%{
+		-webkit-transform : translate3D(16.67%,0,0) rotateY(30deg)
+	}
+}
+
+@-webkit-keyframes one-to-three{
+	0%{
+		-webkit-transform : translate3D(16.67%,0,0) rotateY(30deg)
+	}
+	50%{
+		-webkit-transform : translate3D(50%,0,300px) rotateY(30deg)
+	}
+	100%{
+		-webkit-transform : translate3D(83.33%,0,0) rotateY(30deg)
+	}
+}
+
+@-webkit-keyframes three-to-one{
+	0%{
+		-webkit-transform : translate3D(83.33%,0,0) rotateY(30deg)
+	}
+	50%{
+		-webkit-transform : translate3D(50%,0,-300px) rotateY(30deg)
+	}
+	100%{
+		-webkit-transform : translate3D(16.67%,0,0) rotateY(30deg)
+	}
+}
+
+@-webkit-keyframes two-to-three{
+	0%{
+		-webkit-transform : translate3D(50%,0,0) rotateY(30deg)
+	}
+	50%{
+		-webkit-transform : translate3D(66.67%,0,200px) rotateY(30deg)
+	}
+	100%{
+		-webkit-transform : translate3D(83.33%,0,0) rotateY(30deg)
+	}
+}
+
+@-webkit-keyframes three-to-two{
+	0%{
+		-webkit-transform : translate3D(83.33%,0,0) rotateY(30deg)
+	}
+	50%{
+		-webkit-transform : translate3D(66.67%,0,-200px) rotateY(30deg)
+	}
+	100%{
+		-webkit-transform : translate3D(50%,0,0) rotateY(30deg)
+	}
+}
+
