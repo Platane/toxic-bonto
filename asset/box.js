@@ -55,16 +55,20 @@ Box.prototype={
 
 		this.exClass=label;
 
+		return this;
+
 	},
 
 	goUp:function(){
 		this.$el
 		.addClass( 'up' );
+		return this;
 	},
 
 	goDown:function(){
 		this.$el
 		.removeClass( 'up' );
+		return this;
 	},
 }
 
@@ -84,7 +88,7 @@ Boxes.prototype={
 	].join(''),
 
 
-	plateWidth : 600,
+	plateWidth : 680,
 	plateHeight : 400,
 
 
@@ -125,12 +129,14 @@ Boxes.prototype={
 			this.boxList[i].moveTo( i+1 );
 		}
 		
+		return this;
 	},
 
 	shuffleOnce:function( combinaison , delay ){
 		for(var i=0;i<3;i++){
 			this.boxList[i].moveTo(combinaison[i] , delay );
 		}
+		return this;
 	},
 
 	shuffleAnim:function( c ){
@@ -151,6 +157,7 @@ Boxes.prototype={
 
 	cancel:function(){
 		window.clearTimeout( this.timeout );
+		return this;
 	},
 
 	shuffle:function(){
@@ -183,16 +190,20 @@ Boxes.prototype={
 		}
 
 		this.shuffleAnim( combinaisons );
+
+		return combinaisons[ combinaisons.length-1 ];
 	},
 
 	goUp:function(){
 		for(var i=0;i<3;i++)
 			this.boxList[i].goUp();
+		return this;
 	},
 
 	goDown:function(){
 		for(var i=0;i<3;i++)
 			this.boxList[i].goDown();
+		return this;
 	},
 }
 

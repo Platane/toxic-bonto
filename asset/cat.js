@@ -20,16 +20,22 @@ Cat.prototype={
 		this.$el
 		.show()
 		.empty()
+
+		return this;
 	},
 	
 	hide:function(){
 		this.$el.hide();
+
+		return this;
 	},
 
 	dead:function(){
 		this.$el
 		.show()
 		.empty()
+
+		return this;
 	},
 
 	place:function(pos){
@@ -42,5 +48,7 @@ Cat.prototype={
 		this.$el.css({
 			'width' : x+'px'
 		})
+
+		return this;
 	},
 }

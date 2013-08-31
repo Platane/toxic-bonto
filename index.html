@@ -6,17 +6,18 @@
 <script type="text/javascript" src="./CoinWare/GameMgr/MockGame.js"></script> 
 <script type="text/javascript" src="./CoinWare/GameMgr/lib/jquery-1.10.0.min.js"></script>
 <script type="text/javascript" src="./asset/box.js"></script>
+<script type="text/javascript" src="./asset/cat.js"></script>
 <script type="text/javascript" src="./main.js"></script>
 <link rel="stylesheet" href="style.css" />
 <link rel="stylesheet" href="main.css" />
 
 <style type="text/css">
 
-html, body { width: 100%; height: 100%; }
+html, body { width: 100%; height: 100%; margin:0; padding:0;}
 #toxicbonto-out { display: table; table-layout: fixed; margin: 0; padding: 0; height: 100%; width: 100%; min-width: 800px; min-height: 480px; }
 #toxicbonto-in { display: table-cell; text-align: center; vertical-align: middle;  margin: 0; padding: 0; height: 100%; width: 100%; min-width: 800px; min-height: 480px; }
 
-#toxicbonto-world { overflow: hidden; margin: 0 auto; width: 750px; height: 480px; padding: 0 25px; border: 2px #333 solid; background: white; position: relative; }
+#toxicbonto-world { overflow: hidden; margin: 0 auto; width: 800px; height: 480px; padding: 0 25px; background: #aaa; position: relative; }
 
 #toxicbonto-world  * { box-sizing: border-box; -moz-box-sizing: border-box; }
 
@@ -65,12 +66,13 @@ html, body { width: 100%; height: 100%; }
 		  boxes.goUp();
 
 		  // init the cat
-		  
+		  var cat = new Cat();
+		  cat.$el.appendTo( $('#toxicbonto-world') )
+		  cat.place(2).dance();
 
-		  // init the bottles
 
-
-
+		  var whereIsTwo;
+		  var cpt={};
 
 
 
@@ -99,11 +101,15 @@ html, body { width: 100%; height: 100%; }
 		   * suffle the box
 		   */
 		  window.setTimeout( function(){
-		  	boxes.shuffle();
+		  	var combi=boxes.shuffle();
+		  	for(whereIsTwo=0; combi[whereIsTwo]!=2;whereIsTwo++);
+
+		  	cat.hide();
 		  } , t );
 		  t+= 1500;
 		  
-		   /** 
+
+		  /** 
 		   * step
 		   * the user can now interact
 		   */
@@ -112,7 +118,7 @@ html, body { width: 100%; height: 100%; }
 
 
 		  	// bind user event on bottles
-		  	var cpt=[];
+		  	var cpt={};
 			$('div[id^=fiole]').click(function(){
 				id=$(this).attr('id');
 				var timer1 = setTimeout(function(){$('#'+id).removeClass(id+'_1').addClass(id+'_2')},50);
@@ -120,45 +126,52 @@ html, body { width: 100%; height: 100%; }
 				var timer3 = setTimeout(function(){$('#'+id).removeClass(id+'_3').addClass(id+'_4')},150);
 				var timer4 = setTimeout(function(){$('#'+id).removeClass(id+'_4').addClass(id+'_5')},200);
 				var timer4 = setTimeout(function(){$('#'+id).removeClass(id+'_5').addClass(id+'_6')},250);
-				cpt.push(id.substr(5,1));
+				var id=parseInt( id.substr(5,1) );
+				cpt[ id ]=true;
 			});
 
-		  } , 500 );
+			// hide the cat
+
+		  } , t );
 
 		  /** 
 		   * step
 		   * too late
 		   */
-		  window.setTimeout( function(){
+		  var endtimeout=window.setTimeout( function(){
 		  	// .. TODO
-
-
-		  	// bind user event on bottles
-		  	var cpt=[];
-			$('div[id^=fiole]').click(function(){
+		  	$('div[id^=fiole]').each(function(){
 				id=$(this).attr('id');
 				var timer1 = setTimeout(function(){$('#'+id).removeClass(id+'_1').addClass(id+'_2')},50);
 				var timer2 = setTimeout(function(){$('#'+id).removeClass(id+'_2').addClass(id+'_3')},100);
 				var timer3 = setTimeout(function(){$('#'+id).removeClass(id+'_3').addClass(id+'_4')},150);
 				var timer4 = setTimeout(function(){$('#'+id).removeClass(id+'_4').addClass(id+'_5')},200);
 				var timer4 = setTimeout(function(){$('#'+id).removeClass(id+'_5').addClass(id+'_6')},250);
-				cpt.push(id.substr(5,1));
+				var id=parseInt( id.substr(5,1) );
+				cpt[ id ]=true;
 			});
+			result();
+		  } , 1000000 );
 
-		  } , 500 );
+		  
+		function result(){
+		  	// show the cat
+		  	cat.place( whereIsTwo );
 
-		  var result=function(){
+		  	if( !cpt[whereIsTwo] ){
+		  		// dead
+		  		cat.dance();
+		  	}else{
+		  		// alive
+		  		cat.dead();
+		  	}
 
-		  }
-		  /*
-		  $('body').on( 'click' , '.toxicbonto-col' , function(){
-		  
-		    if( ! READY ) return true;
-		  
-			console.log( 'Click' );
-		  } );
-		  */
-		  
+
+		  	// up the boxes
+		  	boxes.goUp();
+
+		  	window.clearTimeout( endtimeout );
+		}
 		  
         } );
 
