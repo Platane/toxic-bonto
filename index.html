@@ -17,19 +17,26 @@ html, body { width: 100%; height: 100%; margin:0; padding:0;}
 #toxicbonto-out { display: table; table-layout: fixed; margin: 0; padding: 0; height: 100%; width: 100%; min-width: 800px; min-height: 480px; }
 #toxicbonto-in { display: table-cell; text-align: center; vertical-align: middle;  margin: 0; padding: 0; height: 100%; width: 100%; min-width: 800px; min-height: 480px; }
 
-#toxicbonto-world { overflow: hidden; margin: 0 auto; width: 800px; height: 480px; padding: 0 25px; position: relative; }
+#toxicbonto-world { overflow: hidden; margin: 0 auto; width: 800px; height: 480px; padding: 0 25px; position: relative; background-size:cover; }
 
 #toxicbonto-world  * { box-sizing: border-box; -moz-box-sizing: border-box; }
 
-#toxicbonto-title { font-size: 50px; text-align: center; height: 100px; vertical-align: middle; line-height: 100px; white-space: nowrap; font-weight: bold; }
+#toxicbonto-title { font-size: 50px; text-align: center; height: 100px; vertical-align: middle; line-height: 100px; white-space: nowrap; font-weight: bold; color: #fff;text-shadow: 4px -4px 3px black; -webkit-transition:all 300ms; position: absolute; left: -800px; font-family: 'fff_tusjbold'; }
+#toxicbonto-title.visible{ left: 100px; }
+
+#toxicbonto-subhint{font-size: 20px; text-align: center; height: 100px; vertical-align: middle; line-height: 100px; white-space: nowrap; font-weight: bold; color: #fff;text-shadow: 4px -4px 3px black; -webkit-transition:all 500ms 600ms; position: absolute; left: 850px; top:100px; font-family: 'fff_tusjbold';}
+#toxicbonto-subhint.visible{ left: 200px; }
+
+#toxicbonto-subsubhint{font-size: 20px; text-align: center; height: 100px; vertical-align: middle; line-height: 100px; white-space: nowrap; font-weight: bold; color: #fff;text-shadow: 4px -4px 3px black; -webkit-transition:all 500ms 1000ms; position: absolute; left: -800px; top:160px; font-family: 'fff_tusjbold';}
+#toxicbonto-subsubhint.visible{ left: 500px; }
+
+#toxicbonto-subsubsubhint{font-size: 20px; text-align: center; height: 100px; vertical-align: middle; line-height: 100px; white-space: nowrap; font-weight: bold; color: #fff;text-shadow: 4px -4px 3px black; -webkit-transition:all 500ms; position: absolute; left: 850px; top:240px; font-family: 'fff_tusjbold';}
+#toxicbonto-subsubsubhint.visible{ left: 300px; }
+
 .toxicbonto-col { cursor: pointer; float: left; width: 250px; position: relative; z-index: 1; height: 380px; background: #aaa;  }
 .toxicbonto-poison { position: absolute; z-index: 2; top: 25px; left: 50%; width: 100px; margin-left: -50px; height: 100px; border: 1px red solid; overflow: hidden; border-radius: 200%; }
 .toxicbonto-poison-liquid { position: absolute; z-index: -1; background-color: blue; left: 0; right: 0; bottom: 0; height: 50%; }
 
-.toxicbonto-box { position: absolute; z-index: 10; bottom: 110px; width: 200px; height: 100px; background: brown; border: 2px #333 solid; }
-.toxicbonto-box[data-num="1"] { left: 50px; }
-.toxicbonto-box[data-num="2"] { left: 50%; margin-left: -100px; }
-.toxicbonto-box[data-num="3"] { right: 50px; }
 
 .toxicbonto-cat { position: absolute; z-index: 10; bottom: 25px; right: 100px; left: 100px; height: 50px; border-radius: 200%; background-color: gray; border: 2px #333 solid; }
 
@@ -41,7 +48,10 @@ html, body { width: 100%; height: 100%; margin:0; padding:0;}
 <div id="toxicbonto-in">
 <div id="toxicbonto-world">
 
-<div id="toxicbonto-title">CHOOSE TWO</div>
+<div id="toxicbonto-title">CHOOSE TWO BOTTLES</div>
+<div id="toxicbonto-subhint">(don't hurt the cat)</div>
+<div id="toxicbonto-subsubhint">(please)</div>
+<div id="toxicbonto-subsubsubhint">You are a terrible human being</div>
 
 		<div id="fiole1" class="fiole fiole1 fiole1_1"></div>
 		<div id="fiole2" class="fiole fiole2 fiole2_1"></div>
@@ -74,7 +84,7 @@ html, body { width: 100%; height: 100%; margin:0; padding:0;}
 
 		  var whereIsTwo;
 		  var cpt={};
-
+		  window.bbq=this;
 
 
 		  var t=0;
@@ -122,6 +132,10 @@ html, body { width: 100%; height: 100%; margin:0; padding:0;}
 		  	$('div[id^=fiole]')
 		  	.addClass('down')
 
+		  	// view the hint
+		  	$('#toxicbonto-title,#toxicbonto-subhint,#toxicbonto-subsubhint')
+		  	.addClass('visible')
+
 		  	// bind user event on bottles
 			$('div[id^=fiole]').one('click',function(){
 				id_=$(this).attr('id');
@@ -145,8 +159,10 @@ html, body { width: 100%; height: 100%; margin:0; padding:0;}
 					for(var k in cpt)
 						cc++;
 
-					$('#counter')
-					.text( cc > 0 ? (2 - cc) : '' )
+					var hint='CHOOSE '+(cc == 0 ? 'TWO' : 'ONE' )+' BOTTLE'+(cc == 2 ? 'S' : '' )
+
+					$('#toxicbonto-title')
+					.text( cc < 2 ? hint : '' )
 
 					if( cc == 2 )
 						result();
@@ -162,24 +178,42 @@ html, body { width: 100%; height: 100%; margin:0; padding:0;}
 		   * too late
 		   */
 		  var endtimeout=window.setTimeout( function(){
-		  	// .. TODO
+
 		  	$('div[id^=fiole]').each(function(){
-				id=$(this).attr('id');
-				setTimeout(function(){$('#'+id).removeClass(id+'_1').addClass(id+'_2');},50);
-				setTimeout(function(){$('#'+id).removeClass(id+'_2').addClass(id+'_3');},100);
-				setTimeout(function(){$('#'+id).removeClass(id+'_3').addClass(id+'_4');},150);
-				setTimeout(function(){$('#'+id).removeClass(id+'_4').addClass(id+'_5');},200);
-				setTimeout(function(){$('#'+id).removeClass(id+'_5').addClass(id+'_6');},250);
-				setTimeout(function(){$('#'+id).removeClass(id+'_6').addClass(id+'_7');},300);
-				setTimeout(function(){$('#'+id).removeClass(id+'_7').addClass(id+'_8');},350);
-				setTimeout(function(){$('#'+id).removeClass(id+'_8').addClass(id+'_9');},400);
-				setTimeout(function(){$('#'+id).removeClass(id+'_9').addClass(id+'_10');},450);
-				setTimeout(function(){$('#'+id).removeClass(id+'_10').addClass(id+'_11');},500);
-				var i=parseInt( id.substr(5,1) );
-				cpt[ i ]=true;
+		  		id_=$(this).attr('id');
+		  		if( !$(this).hasClass(id_+'_1') )
+		  			return;
+				(function(){
+					var id=id_
+					setTimeout(function(){$('#'+id).removeClass(id+'_1').addClass(id+'_2');},50);
+					setTimeout(function(){$('#'+id).removeClass(id+'_2').addClass(id+'_3');},100);
+					setTimeout(function(){$('#'+id).removeClass(id+'_3').addClass(id+'_4');},150);
+					setTimeout(function(){$('#'+id).removeClass(id+'_4').addClass(id+'_5');},200);
+					setTimeout(function(){$('#'+id).removeClass(id+'_5').addClass(id+'_6');},250);
+					setTimeout(function(){$('#'+id).removeClass(id+'_6').addClass(id+'_7');},300);
+					setTimeout(function(){$('#'+id).removeClass(id+'_7').addClass(id+'_8');},350);
+					setTimeout(function(){$('#'+id).removeClass(id+'_8').addClass(id+'_9');},400);
+					setTimeout(function(){$('#'+id).removeClass(id+'_9').addClass(id+'_10');},450);
+					setTimeout(function(){$('#'+id).removeClass(id+'_10').addClass(id+'_11');},500);
+					
+					var i=parseInt( id.substr(5,1) );
+					cpt[ i ]=true;
+
+					var cc=0;
+					for(var k in cpt)
+						cc++;
+
+					var hint='CHOOSE '+(cc == 0 ? 'TWO' : 'ONE' )+' BOTTLE'+(cc == 2 ? 'S' : '' )
+
+					$('#toxicbonto-title')
+					.text( cc < 2 ? hint : '' )
+
+					if( cc == 2 )
+						result();
+				})();
 			});
 			result();
-		  } , 1000000 );
+		  } , 9000 );
 
 		  
 		function result(){
@@ -197,6 +231,9 @@ html, body { width: 100%; height: 100%; margin:0; padding:0;}
 			  	}else{
 			  		// alive
 			  		cat.dead();
+
+			  		$('#toxicbonto-subsubsubhint')
+			  		.addClass('visible')
 			  	}
 
 
@@ -207,9 +244,9 @@ html, body { width: 100%; height: 100%; margin:0; padding:0;}
 
 		  	window.setTimeout( function(){
 
-			  	//this.endCB
+			  	bbq.endCB( won );
 
-			}, 500 )
+			}, 1500 )
 		  	
 
 		  	window.clearTimeout( endtimeout );
@@ -218,7 +255,7 @@ html, body { width: 100%; height: 100%; margin:0; padding:0;}
 		  	$('div[id^=fiole]').unbind();
 		}
 		  
-        } );
+        });
 
         bbq.ready();
     }; 
