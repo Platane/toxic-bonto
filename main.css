@@ -1,0 +1,37 @@
+div.cadre{
+	border:1px solid black;
+	width:800px;
+	height:480px;
+}
+div.fiole1,div.fiole2,div.fiole3{
+	width: 93px;
+	height: 120px;
+	position: absolute;
+	background:url('fioles_sprite.png');
+	background-repeat: no-repeat;
+}
+div.fiole1{left:80px;top:50px;}
+div.fiole2{left:320px;top:50px;}
+div.fiole3{left:530px;top:50px;}
+
+div.fiole1_1{background-position: -10px -16px;}
+div.fiole1_2{background-position: -108px -16px;}
+div.fiole1_3{background-position: -201px -16px;}
+div.fiole1_4{background-position: -299px -16px;}
+div.fiole1_5{background-position: -406px -16px;}
+div.fiole1_6{background-position: -504px -16px;}
+
+div.fiole2_1{background-position: -9px -159px;}
+div.fiole2_2{background-position: -115px -159px;}
+div.fiole2_3{background-position: -208px -159px;}
+div.fiole2_4{background-position: -315px -159px;}
+div.fiole2_5{background-position: -415px -159px;}
+div.fiole2_6{background-position: -510px -159px;}
+
+div.fiole3_1{background-position: -5px -295px;}
+div.fiole3_2{background-position: -120px -295px;}
+div.fiole3_3{background-position: -225px -295px;}
+div.fiole3_4{background-position: -321px -295px;}
+div.fiole3_5{background-position: -423px -295px;}
+div.fiole3_6{background-position: -518px -295px;}
+

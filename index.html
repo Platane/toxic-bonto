@@ -5,8 +5,10 @@
 <script type="text/javascript" src="./CoinWare/GameMgr/CWGame.js"></script> 
 <script type="text/javascript" src="./CoinWare/GameMgr/MockGame.js"></script> 
 <script type="text/javascript" src="./CoinWare/GameMgr/lib/jquery-1.10.0.min.js"></script>
-<script type="text/javascript" src="./asset/box.js"></script> 
+<script type="text/javascript" src="./asset/box.js"></script>
+<script type="text/javascript" src="./main.js"></script>
 <link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="main.css" />
 
 <style type="text/css">
 
@@ -40,7 +42,9 @@ html, body { width: 100%; height: 100%; }
 
 <div id="toxicbonto-title">CHOOSE TWO</div>
 
-
+		<div id="fiole1" class="fiole fiole1 fiole1_1"></div>
+		<div id="fiole2" class="fiole fiole2 fiole2_1"></div>
+		<div id="fiole3" class="fiole fiole3 fiole3_1"></div>
 
 </div>
 
@@ -53,19 +57,6 @@ html, body { width: 100%; height: 100%; }
     function gameLoad(bbq) {
         bbq.onStart(function(params) {
 		
-		  var ib = 0, READY = false;
-		  $('.toxicbonto-box').each( function(){
-		    var t = $(this);
-			window.setTimeout( function(){
-			  t.animate( { bottom: '20px' } , 600 , 'swing' , function(){
-		  
-				console.log( 'Cat hide');
-			  } ); 	
-			
-			} , 100 + ( ib * Math.random() ) );
-			ib += 50;
-		  
-		  } );
 
 
 		  //init the boxes
@@ -75,6 +66,14 @@ html, body { width: 100%; height: 100%; }
 
 		  // init the cat
 		  
+
+		  // init the bottles
+
+
+
+
+
+
 		  var t=0;
 		  /** 
 		   * step
@@ -111,8 +110,46 @@ html, body { width: 100%; height: 100%; }
 		  window.setTimeout( function(){
 		  	// .. TODO
 
+
+		  	// bind user event on bottles
+		  	var cpt=[];
+			$('div[id^=fiole]').click(function(){
+				id=$(this).attr('id');
+				var timer1 = setTimeout(function(){$('#'+id).removeClass(id+'_1').addClass(id+'_2')},50);
+				var timer2 = setTimeout(function(){$('#'+id).removeClass(id+'_2').addClass(id+'_3')},100);
+				var timer3 = setTimeout(function(){$('#'+id).removeClass(id+'_3').addClass(id+'_4')},150);
+				var timer4 = setTimeout(function(){$('#'+id).removeClass(id+'_4').addClass(id+'_5')},200);
+				var timer4 = setTimeout(function(){$('#'+id).removeClass(id+'_5').addClass(id+'_6')},250);
+				cpt.push(id.substr(5,1));
+			});
+
 		  } , 500 );
 
+		  /** 
+		   * step
+		   * too late
+		   */
+		  window.setTimeout( function(){
+		  	// .. TODO
+
+
+		  	// bind user event on bottles
+		  	var cpt=[];
+			$('div[id^=fiole]').click(function(){
+				id=$(this).attr('id');
+				var timer1 = setTimeout(function(){$('#'+id).removeClass(id+'_1').addClass(id+'_2')},50);
+				var timer2 = setTimeout(function(){$('#'+id).removeClass(id+'_2').addClass(id+'_3')},100);
+				var timer3 = setTimeout(function(){$('#'+id).removeClass(id+'_3').addClass(id+'_4')},150);
+				var timer4 = setTimeout(function(){$('#'+id).removeClass(id+'_4').addClass(id+'_5')},200);
+				var timer4 = setTimeout(function(){$('#'+id).removeClass(id+'_5').addClass(id+'_6')},250);
+				cpt.push(id.substr(5,1));
+			});
+
+		  } , 500 );
+
+		  var result=function(){
+
+		  }
 		  /*
 		  $('body').on( 'click' , '.toxicbonto-col' , function(){
 		  
