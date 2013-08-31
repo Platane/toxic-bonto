@@ -1,3 +1,25 @@
+
+/**** main ***/
+#toxicbonto-world{
+	background: -webkit-radial-gradient(center, ellipse cover, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%); 
+}
+
+
+/**** cat ***/
+.cat.dance{
+	background-image: url('./waiting_cat.gif');
+	width: 90px;
+	height: 90px;
+	position: absolute;
+	top: 320px;
+	z-index:0;
+}
+
+
+
+
+/**** box ***/
+
 .box{
 	position: relative;
 	-webkit-transition:top 300ms;
@@ -57,7 +79,7 @@
 .plate{
 	position:absolute;
 	top:300px;
-
+	z-index:10;
 	-webkit-perspective:1000;
 	-webkit-perspective-origin: center -220px;
 }

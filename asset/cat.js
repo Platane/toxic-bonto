@@ -19,7 +19,8 @@ Cat.prototype={
 	dance:function(){
 		this.$el
 		.show()
-		.empty()
+		.removeClass('dance dead')
+		.addClass('dance')
 
 		return this;
 	},
@@ -33,7 +34,8 @@ Cat.prototype={
 	dead:function(){
 		this.$el
 		.show()
-		.empty()
+		.removeClass('dance dead')
+		.addClass('dead')
 
 		return this;
 	},
@@ -41,12 +43,12 @@ Cat.prototype={
 	place:function(pos){
 		var x=0;
 		switch(pos){
-			case 1:80;		
-			case 2:320;		
-			case 1:530;		
+			case 1:x=80;break;		
+			case 2:x=390;break;		
+			case 1:x=530;break;		
 		}
 		this.$el.css({
-			'width' : x+'px'
+			'left' : x+'px'
 		})
 
 		return this;
