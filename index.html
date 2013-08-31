@@ -122,7 +122,6 @@ html, body { width: 100%; height: 100%; margin:0; padding:0;}
 		  	.addClass('down')
 
 		  	// bind user event on bottles
-		  	var cpt={};
 			$('div[id^=fiole]').one('click',function(){
 				id_=$(this).attr('id');
 				(function(){
@@ -137,6 +136,7 @@ html, body { width: 100%; height: 100%; margin:0; padding:0;}
 					setTimeout(function(){$('#'+id).removeClass(id+'_8').addClass(id+'_9');},400);
 					setTimeout(function(){$('#'+id).removeClass(id+'_9').addClass(id+'_10');},450);
 					setTimeout(function(){$('#'+id).removeClass(id+'_10').addClass(id+'_11');},500);
+					
 					var i=parseInt( id.substr(5,1) );
 					cpt[ i ]=true;
 
@@ -185,12 +185,14 @@ html, body { width: 100%; height: 100%; margin:0; padding:0;}
 		  	// show the cat
 		  	cat.place( whereIsTwo );
 
+		  	var won=false;
 
 		  	window.setTimeout( function(){
 
 			  	if( !cpt[whereIsTwo] ){
 			  		// dead
 			  		cat.dance();
+			  		won=true;
 			  	}else{
 			  		// alive
 			  		cat.dead();
@@ -200,6 +202,14 @@ html, body { width: 100%; height: 100%; margin:0; padding:0;}
 			  	// up the boxes
 			  	boxes.goUp();
 			}, 500 )
+
+
+		  	window.setTimeout( function(){
+
+			  	//this.endCB
+
+			}, 500 )
+		  	
 
 		  	window.clearTimeout( endtimeout );
 
