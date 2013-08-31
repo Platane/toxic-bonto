@@ -6,8 +6,8 @@
 }
 
 .box>div{
-	width:100px;
-	height:100px;
+	width:70px;
+	height:70px;
 	position:absolute;
 	background-color:#f2e587 ;
 }
@@ -56,10 +56,10 @@
 
 .plate{
 	position:absolute;
-	top:200px;
+	top:300px;
 
 	-webkit-perspective:1000;
-	-webkit-perspective-origin: center -200px;
+	-webkit-perspective-origin: center -220px;
 }
 
 
@@ -77,7 +77,7 @@
 }
 
 .up{
-	top : -200px;
+	top : -160px;
 }
 
 .one-from-two{

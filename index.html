@@ -14,7 +14,7 @@ html, body { width: 100%; height: 100%; }
 #toxicbonto-out { display: table; table-layout: fixed; margin: 0; padding: 0; height: 100%; width: 100%; min-width: 800px; min-height: 480px; }
 #toxicbonto-in { display: table-cell; text-align: center; vertical-align: middle;  margin: 0; padding: 0; height: 100%; width: 100%; min-width: 800px; min-height: 480px; }
 
-#toxicbonto-world { margin: 0 auto; width: 750px; height: 480px; padding: 0 25px; border: 2px #333 solid; background: white; position: relative; }
+#toxicbonto-world { overflow: hidden; margin: 0 auto; width: 750px; height: 480px; padding: 0 25px; border: 2px #333 solid; background: white; position: relative; }
 
 #toxicbonto-world  * { box-sizing: border-box; -moz-box-sizing: border-box; }
 
@@ -42,38 +42,6 @@ html, body { width: 100%; height: 100%; }
 
 
 
-<div class="toxicbonto-box" data-num="1">
-
-</div>
-<div class="toxicbonto-box" data-num="2">
-
-</div>
-<div class="toxicbonto-box"  data-num="3">
-
-</div>
-
-<div class="toxicbonto-col" data-num="1">
-  <div class="toxicbonto-poison" data-status="half">
-    <div class="toxicbonto-poison-liquid"></div>
-    <div class="toxicbonto-poison-mask"></div>
-  </div>
-  <div class="toxicbonto-cat" data-status="alive"></div>
-</div>
-  
-<div class="toxicbonto-col" data-num="2">
-  <div class="toxicbonto-poison" data-status="empty">
-    <div class="toxicbonto-poison-liquid"></div>
-    <div class="toxicbonto-poison-mask"></div>
-  </div>
-  <div class="toxicbonto-cat" data-status="dead"></div>
-</div>
-
-<div class="toxicbonto-col" data-num="3">
-  <div class="toxicbonto-poison">
-    <div class="toxicbonto-poison-liquid"></div>
-    <div class="toxicbonto-poison-mask"></div>
-  </div>
-  <div class="toxicbonto-cat" data-status="alive"></div>
 </div>
 
 </div>
@@ -98,20 +66,61 @@ html, body { width: 100%; height: 100%; }
 			ib += 50;
 		  
 		  } );
+
+
+		  //init the boxes
+		  var boxes = new Boxes();
+		  boxes.$el.appendTo( $('#toxicbonto-world') )
+		  boxes.goUp();
+
+		  // init the cat
+		  
+		  var t=0;
+		  /** 
+		   * step
+		   * look at my fucking cat
+		   */
 		  
 		  window.setTimeout( function(){
-		    // at this point, we can shuffle boxes
-			console.log( 'Box shuffle' );
-			READY = true;
-		  } , 800 );
+		  	// srsly look at it
+		  } , t );
+		  t+= 800;
+
+		  /** 
+		   * step
+		   * hide the cat, make the box go down
+		   */
+		  window.setTimeout( function(){
+		  	boxes.goDown();
+		  } , t );
+		  t+= 500;
+
+		  /** 
+		   * step
+		   * suffle the box
+		   */
+		  window.setTimeout( function(){
+		  	boxes.shuffle();
+		  } , t );
+		  t+= 1500;
 		  
-		  
+		   /** 
+		   * step
+		   * the user can now interact
+		   */
+		  window.setTimeout( function(){
+		  	// .. TODO
+
+		  } , 500 );
+
+		  /*
 		  $('body').on( 'click' , '.toxicbonto-col' , function(){
 		  
 		    if( ! READY ) return true;
 		  
 			console.log( 'Click' );
 		  } );
+		  */
 		  
 		  
         } );
