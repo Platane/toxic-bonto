@@ -145,7 +145,7 @@ Boxes.prototype={
 			this.on_going_combinaison=c;
 		}
 
-		var delay = 200 * Math.min( this.on_going_combinaison.length / this.n_shuffle + 1 , 1.8 )
+		var delay = 190 * Math.min( this.on_going_combinaison.length / this.n_shuffle + 1 , 1.8 )
 
 		this.shuffleOnce( this.on_going_combinaison.shift() , delay );
 
@@ -161,7 +161,7 @@ Boxes.prototype={
 	},
 
 	shuffle:function(){
-		this.n_shuffle=15;
+		this.n_shuffle=12;
 
 		var combinaisons=[],c;
 

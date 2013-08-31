@@ -7,7 +7,6 @@
 <script type="text/javascript" src="./CoinWare/GameMgr/lib/jquery-1.10.0.min.js"></script>
 <script type="text/javascript" src="./asset/box.js"></script>
 <script type="text/javascript" src="./asset/cat.js"></script>
-<script type="text/javascript" src="./main.js"></script>
 <link rel="stylesheet" href="style.css" />
 <link rel="stylesheet" href="main.css" />
 
@@ -104,10 +103,11 @@ html, body { width: 100%; height: 100%; margin:0; padding:0;}
 		  window.setTimeout( function(){
 		  	var combi=boxes.shuffle();
 		  	for(whereIsTwo=0; combi[whereIsTwo]!=2;whereIsTwo++);
+		  	whereIsTwo++
 
 		  	cat.hide();
 		  } , t );
-		  t+= 1500;
+		  t+= 4000;
 		  
 
 		  /** 
@@ -117,18 +117,39 @@ html, body { width: 100%; height: 100%; margin:0; padding:0;}
 		  window.setTimeout( function(){
 		  	// .. TODO
 
+		  	// make the bottle appear
+		  	$('div[id^=fiole]')
+		  	.addClass('down')
 
 		  	// bind user event on bottles
 		  	var cpt={};
-			$('div[id^=fiole]').click(function(){
-				id=$(this).attr('id');
-				var timer1 = setTimeout(function(){$('#'+id).removeClass(id+'_1').addClass(id+'_2')},50);
-				var timer2 = setTimeout(function(){$('#'+id).removeClass(id+'_2').addClass(id+'_3')},100);
-				var timer3 = setTimeout(function(){$('#'+id).removeClass(id+'_3').addClass(id+'_4')},150);
-				var timer4 = setTimeout(function(){$('#'+id).removeClass(id+'_4').addClass(id+'_5')},200);
-				var timer4 = setTimeout(function(){$('#'+id).removeClass(id+'_5').addClass(id+'_6')},250);
-				var id=parseInt( id.substr(5,1) );
-				cpt[ id ]=true;
+			$('div[id^=fiole]').one('click',function(){
+				id_=$(this).attr('id');
+				(function(){
+					var id=id_
+					setTimeout(function(){$('#'+id).removeClass(id+'_1').addClass(id+'_2');},50);
+					setTimeout(function(){$('#'+id).removeClass(id+'_2').addClass(id+'_3');},100);
+					setTimeout(function(){$('#'+id).removeClass(id+'_3').addClass(id+'_4');},150);
+					setTimeout(function(){$('#'+id).removeClass(id+'_4').addClass(id+'_5');},200);
+					setTimeout(function(){$('#'+id).removeClass(id+'_5').addClass(id+'_6');},250);
+					setTimeout(function(){$('#'+id).removeClass(id+'_6').addClass(id+'_7');},300);
+					setTimeout(function(){$('#'+id).removeClass(id+'_7').addClass(id+'_8');},350);
+					setTimeout(function(){$('#'+id).removeClass(id+'_8').addClass(id+'_9');},400);
+					setTimeout(function(){$('#'+id).removeClass(id+'_9').addClass(id+'_10');},450);
+					setTimeout(function(){$('#'+id).removeClass(id+'_10').addClass(id+'_11');},500);
+					var i=parseInt( id.substr(5,1) );
+					cpt[ i ]=true;
+
+					var cc=0;
+					for(var k in cpt)
+						cc++;
+
+					$('#counter')
+					.text( cc > 0 ? (2 - cc) : '' )
+
+					if( cc == 2 )
+						result();
+				})();
 			});
 
 			// hide the cat
@@ -143,13 +164,18 @@ html, body { width: 100%; height: 100%; margin:0; padding:0;}
 		  	// .. TODO
 		  	$('div[id^=fiole]').each(function(){
 				id=$(this).attr('id');
-				var timer1 = setTimeout(function(){$('#'+id).removeClass(id+'_1').addClass(id+'_2')},50);
-				var timer2 = setTimeout(function(){$('#'+id).removeClass(id+'_2').addClass(id+'_3')},100);
-				var timer3 = setTimeout(function(){$('#'+id).removeClass(id+'_3').addClass(id+'_4')},150);
-				var timer4 = setTimeout(function(){$('#'+id).removeClass(id+'_4').addClass(id+'_5')},200);
-				var timer4 = setTimeout(function(){$('#'+id).removeClass(id+'_5').addClass(id+'_6')},250);
-				var id=parseInt( id.substr(5,1) );
-				cpt[ id ]=true;
+				setTimeout(function(){$('#'+id).removeClass(id+'_1').addClass(id+'_2');},50);
+				setTimeout(function(){$('#'+id).removeClass(id+'_2').addClass(id+'_3');},100);
+				setTimeout(function(){$('#'+id).removeClass(id+'_3').addClass(id+'_4');},150);
+				setTimeout(function(){$('#'+id).removeClass(id+'_4').addClass(id+'_5');},200);
+				setTimeout(function(){$('#'+id).removeClass(id+'_5').addClass(id+'_6');},250);
+				setTimeout(function(){$('#'+id).removeClass(id+'_6').addClass(id+'_7');},300);
+				setTimeout(function(){$('#'+id).removeClass(id+'_7').addClass(id+'_8');},350);
+				setTimeout(function(){$('#'+id).removeClass(id+'_8').addClass(id+'_9');},400);
+				setTimeout(function(){$('#'+id).removeClass(id+'_9').addClass(id+'_10');},450);
+				setTimeout(function(){$('#'+id).removeClass(id+'_10').addClass(id+'_11');},500);
+				var i=parseInt( id.substr(5,1) );
+				cpt[ i ]=true;
 			});
 			result();
 		  } , 1000000 );
@@ -159,19 +185,26 @@ html, body { width: 100%; height: 100%; margin:0; padding:0;}
 		  	// show the cat
 		  	cat.place( whereIsTwo );
 
-		  	if( !cpt[whereIsTwo] ){
-		  		// dead
-		  		cat.dance();
-		  	}else{
-		  		// alive
-		  		cat.dead();
-		  	}
+
+		  	window.setTimeout( function(){
+
+			  	if( !cpt[whereIsTwo] ){
+			  		// dead
+			  		cat.dance();
+			  	}else{
+			  		// alive
+			  		cat.dead();
+			  	}
 
 
-		  	// up the boxes
-		  	boxes.goUp();
+			  	// up the boxes
+			  	boxes.goUp();
+			}, 500 )
 
 		  	window.clearTimeout( endtimeout );
+
+		  	// clear listener
+		  	$('div[id^=fiole]').unbind();
 		}
 		  
         } );

@@ -43,9 +43,9 @@ Cat.prototype={
 	place:function(pos){
 		var x=0;
 		switch(pos){
-			case 1:x=80;break;		
+			case 1:x=130;break;		
 			case 2:x=390;break;		
-			case 1:x=530;break;		
+			case 3:x=640;break;		
 		}
 		this.$el.css({
 			'left' : x+'px'
