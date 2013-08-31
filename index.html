@@ -17,20 +17,20 @@ html, body { width: 100%; height: 100%; margin:0; padding:0;}
 #toxicbonto-out { display: table; table-layout: fixed; margin: 0; padding: 0; height: 100%; width: 100%; min-width: 800px; min-height: 480px; }
 #toxicbonto-in { display: table-cell; text-align: center; vertical-align: middle;  margin: 0; padding: 0; height: 100%; width: 100%; min-width: 800px; min-height: 480px; }
 
-#toxicbonto-world { overflow: hidden; margin: 0 auto; width: 800px; height: 480px; padding: 0 25px; position: relative; background-size:cover; }
+#toxicbonto-world { overflow: hidden; margin: 0 auto; width: 800px; height: 480px; position: relative; background-size:cover; }
 
 #toxicbonto-world  * { box-sizing: border-box; -moz-box-sizing: border-box; }
 
-#toxicbonto-title { font-size: 50px; text-align: center; height: 100px; vertical-align: middle; line-height: 100px; white-space: nowrap; font-weight: bold; color: #fff;text-shadow: 4px -4px 3px black; -webkit-transition:all 300ms; position: absolute; left: -800px; font-family: 'fff_tusjbold'; }
+#toxicbonto-title { font-size: 50px; text-align: center; height: 100px; vertical-align: middle; line-height: 100px; white-space: nowrap; font-weight: bold; color: #fff;text-shadow: 4px -4px 3px black; -webkit-transition:all 300ms; -moz-transition:all 300ms; position: absolute; left: -800px; font-family: 'fff_tusjbold'; }
 #toxicbonto-title.visible{ left: 100px; }
 
-#toxicbonto-subhint{font-size: 20px; text-align: center; height: 100px; vertical-align: middle; line-height: 100px; white-space: nowrap; font-weight: bold; color: #fff;text-shadow: 4px -4px 3px black; -webkit-transition:all 500ms 600ms; position: absolute; left: 850px; top:100px; font-family: 'fff_tusjbold';}
+#toxicbonto-subhint{font-size: 20px; text-align: center; height: 100px; vertical-align: middle; line-height: 100px; white-space: nowrap; font-weight: bold; color: #fff;text-shadow: 4px -4px 3px black; -webkit-transition:all 500ms 600ms; -moz-transition:all 500ms 600ms; position: absolute; left: 850px; top:100px; font-family: 'fff_tusjbold';}
 #toxicbonto-subhint.visible{ left: 200px; }
 
-#toxicbonto-subsubhint{font-size: 20px; text-align: center; height: 100px; vertical-align: middle; line-height: 100px; white-space: nowrap; font-weight: bold; color: #fff;text-shadow: 4px -4px 3px black; -webkit-transition:all 500ms 1000ms; position: absolute; left: -800px; top:160px; font-family: 'fff_tusjbold';}
+#toxicbonto-subsubhint{font-size: 20px; text-align: center; height: 100px; vertical-align: middle; line-height: 100px; white-space: nowrap; font-weight: bold; color: #fff;text-shadow: 4px -4px 3px black; -webkit-transition:all 500ms 1000ms; -moz-transition:all 500ms 1000ms; position: absolute; left: -800px; top:160px; font-family: 'fff_tusjbold';}
 #toxicbonto-subsubhint.visible{ left: 500px; }
 
-#toxicbonto-subsubsubhint{font-size: 20px; text-align: center; height: 100px; vertical-align: middle; line-height: 100px; white-space: nowrap; font-weight: bold; color: #fff;text-shadow: 4px -4px 3px black; -webkit-transition:all 500ms; position: absolute; left: 850px; top:240px; font-family: 'fff_tusjbold';}
+#toxicbonto-subsubsubhint{font-size: 20px; text-align: center; height: 100px; vertical-align: middle; line-height: 100px; white-space: nowrap; font-weight: bold; color: #fff;text-shadow: 4px -4px 3px black; -webkit-transition:all 500ms; -moz-transition:all 500ms; position: absolute; left: 850px; top:240px; font-family: 'fff_tusjbold';}
 #toxicbonto-subsubsubhint.visible{ left: 300px; }
 
 .toxicbonto-col { cursor: pointer; float: left; width: 250px; position: relative; z-index: 1; height: 380px; background: #aaa;  }
@@ -213,7 +213,7 @@ html, body { width: 100%; height: 100%; margin:0; padding:0;}
 				})();
 			});
 			result();
-		  } , 9000 );
+		  } , 11000 );
 
 		  
 		function result(){
