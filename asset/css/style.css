@@ -2,7 +2,7 @@
 /**** main ***/
 #toxicbonto-world{
 	background: -webkit-radial-gradient(center, ellipse cover, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%); 
-	background: url(./background.png);
+	background: url(../background.png);
 }
 
 #counter{
@@ -11,7 +11,7 @@
 
 /**** cat ***/
 .cat.dance{
-	background-image: url('./waiting_cat.gif');
+	background-image: url('../sprite/waiting_cat.gif');
 	width: 90px;
 	height: 90px;
 	position: absolute;
@@ -19,7 +19,7 @@
 	z-index:0;
 }
 .cat.dead{
-	background-image: url('./chat_zombie.gif');
+	background-image: url('../sprite/chat_zombie.gif');
 	width: 90px;
 	height: 90px;
 	position: absolute;

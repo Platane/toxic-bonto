@@ -15,7 +15,7 @@ div.fiole1,div.fiole2,div.fiole3{
 	width: 93px;
 	height: 273px;
 	position: absolute;
-	background:url('fioles_sprite.png');
+	background:url('../sprite/fioles_sprite.png');
 	background-repeat: no-repeat;
 	background-size: 1100px 1050px;
 	z-index: 20;
