@@ -1,79 +1,271 @@
 <!DOCTYPE html>
 <html>
+<head>
+<meta charset="utf-8" />
+<script type="text/javascript" src="./CoinWare/GameMgr/CWGame.js"></script> 
+<script type="text/javascript" src="./CoinWare/GameMgr/MockGame.js"></script> 
+<script type="text/javascript" src="./CoinWare/GameMgr/lib/jquery-1.10.0.min.js"></script>
+<script type="text/javascript" src="./asset/script/box.js"></script>
+<script type="text/javascript" src="./asset/script/cat.js"></script>
+<link rel="stylesheet" href="./font/stylesheet.css" />
+<link rel="stylesheet" href="./asset/css/style.css" />
+<link rel="stylesheet" href="./asset/css/main.css" />
 
-  <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Toxic-bonto : game created at BBQ game jam 2013" />
+<style type="text/css">
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+html, body { width: 100%; height: 100%; margin:0; padding:0;}
+#toxicbonto-out { display: table; table-layout: fixed; margin: 0; padding: 0; height: 100%; width: 100%; min-width: 800px; min-height: 480px; }
+#toxicbonto-in { display: table-cell; text-align: center; vertical-align: middle;  margin: 0; padding: 0; height: 100%; width: 100%; min-width: 800px; min-height: 480px; }
 
-    <title>Toxic-bonto</title>
-  </head>
+#toxicbonto-world { overflow: hidden; margin: 0 auto; width: 800px; height: 480px; position: relative; background-size:cover; }
 
-  <body>
+#toxicbonto-world  * { box-sizing: border-box; -moz-box-sizing: border-box; }
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/Platane/toxic-bonto">View on GitHub</a>
+#toxicbonto-title { font-size: 50px; text-align: center; height: 100px; vertical-align: middle; line-height: 100px; white-space: nowrap; font-weight: bold; color: #fff;text-shadow: 4px -4px 3px black; -webkit-transition:all 300ms; -moz-transition:all 300ms; position: absolute; left: -800px; font-family: 'fff_tusjbold'; }
+#toxicbonto-title.visible{ left: 100px; }
 
-          <h1 id="project_title">Toxic-bonto</h1>
-          <h2 id="project_tagline">game created at BBQ game jam 2013</h2>
+#toxicbonto-subhint{font-size: 20px; text-align: center; height: 100px; vertical-align: middle; line-height: 100px; white-space: nowrap; font-weight: bold; color: #fff;text-shadow: 4px -4px 3px black; -webkit-transition:all 500ms 600ms; -moz-transition:all 500ms 600ms; position: absolute; left: 850px; top:100px; font-family: 'fff_tusjbold';}
+#toxicbonto-subhint.visible{ left: 200px; }
 
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/Platane/toxic-bonto/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/Platane/toxic-bonto/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
+#toxicbonto-subsubhint{font-size: 20px; text-align: center; height: 100px; vertical-align: middle; line-height: 100px; white-space: nowrap; font-weight: bold; color: #fff;text-shadow: 4px -4px 3px black; -webkit-transition:all 500ms 1000ms; -moz-transition:all 500ms 1000ms; position: absolute; left: -800px; top:160px; font-family: 'fff_tusjbold';}
+#toxicbonto-subsubhint.visible{ left: 500px; }
 
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+#toxicbonto-subsubsubhint{font-size: 20px; text-align: center; height: 100px; vertical-align: middle; line-height: 100px; white-space: nowrap; font-weight: bold; color: #fff;text-shadow: 4px -4px 3px black; -webkit-transition:all 500ms; -moz-transition:all 500ms; position: absolute; left: 850px; top:240px; font-family: 'fff_tusjbold';}
+#toxicbonto-subsubsubhint.visible{ left: 300px; }
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+.toxicbonto-col { cursor: pointer; float: left; width: 250px; position: relative; z-index: 1; height: 380px; background: #aaa;  }
+.toxicbonto-poison { position: absolute; z-index: 2; top: 25px; left: 50%; width: 100px; margin-left: -50px; height: 100px; border: 1px red solid; overflow: hidden; border-radius: 200%; }
+.toxicbonto-poison-liquid { position: absolute; z-index: -1; background-color: blue; left: 0; right: 0; bottom: 0; height: 50%; }
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+.toxicbonto-cat { position: absolute; z-index: 10; bottom: 25px; right: 100px; left: 100px; height: 50px; border-radius: 200%; background-color: gray; border: 2px #333 solid; }
 
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+</style>
+</head>
+<body>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<audio id="victory_sound" >
+	<source src="./asset/sound/victory.mp3">
+</audio>
 
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<div id="toxicbonto-out">
+<div id="toxicbonto-in">
+<div id="toxicbonto-world">
 
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+<div id="toxicbonto-title">CHOOSE TWO BOTTLES</div>
+<div id="toxicbonto-subhint">(don't hurt the cat)</div>
+<div id="toxicbonto-subsubhint">(please)</div>
+<div id="toxicbonto-subsubsubhint">You are a terrible human being</div>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+		<div id="fiole1" class="fiole fiole1 fiole1_1"></div>
+		<div id="fiole2" class="fiole fiole2 fiole2_1"></div>
+		<div id="fiole3" class="fiole fiole3 fiole3_1"></div>
 
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+		<div id="counter"></div>
+</div>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-    </div>
+</div>
+</div>
+</div>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Toxic-bonto maintained by <a href="https://github.com/Platane">Platane</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
+    <script type="text/javascript">
 
-    
+    function gameLoad(bbq) {
+        bbq.onStart(function(params) {
+		
 
-  </body>
+
+		  //init the boxes
+		  var boxes = new Boxes();
+		  boxes.$el.appendTo( $('#toxicbonto-world') )
+		  boxes.goUp();
+
+		  // init the cat
+		  var cat = new Cat();
+		  cat.$el.appendTo( $('#toxicbonto-world') )
+		  cat.place(2).dance();
+
+
+		  var whereIsTwo;
+		  var cpt={};
+		  window.bbq=this;
+
+
+		  var t=0;
+		  /** 
+		   * step
+		   * look at my fucking cat
+		   */
+		  
+		  window.setTimeout( function(){
+		  	// srsly look at it
+		  } , t );
+		  t+= 800;
+
+		  /** 
+		   * step
+		   * hide the cat, make the box go down
+		   */
+		  window.setTimeout( function(){
+		  	boxes.goDown();
+		  } , t );
+		  t+= 500;
+
+		  /** 
+		   * step
+		   * suffle the box
+		   */
+		  window.setTimeout( function(){
+		  	var combi=boxes.shuffle();
+		  	for(whereIsTwo=0; combi[whereIsTwo]!=2;whereIsTwo++);
+		  	whereIsTwo++
+
+		  	cat.hide();
+		  } , t );
+		  t+= 4000;
+		  
+
+		  /** 
+		   * step
+		   * the user can now interact
+		   */
+		  window.setTimeout( function(){
+		  	// .. TODO
+
+		  	// make the bottle appear
+		  	$('div[id^=fiole]')
+		  	.addClass('down')
+
+		  	// view the hint
+		  	$('#toxicbonto-title,#toxicbonto-subhint,#toxicbonto-subsubhint')
+		  	.addClass('visible')
+
+		  	// bind user event on bottles
+			$('div[id^=fiole]').one('click',function(){
+				id_=$(this).attr('id');
+				(function(){
+					var id=id_
+					setTimeout(function(){$('#'+id).removeClass(id+'_1').addClass(id+'_2');},50);
+					setTimeout(function(){$('#'+id).removeClass(id+'_2').addClass(id+'_3');},100);
+					setTimeout(function(){$('#'+id).removeClass(id+'_3').addClass(id+'_4');},150);
+					setTimeout(function(){$('#'+id).removeClass(id+'_4').addClass(id+'_5');},200);
+					setTimeout(function(){$('#'+id).removeClass(id+'_5').addClass(id+'_6');},250);
+					setTimeout(function(){$('#'+id).removeClass(id+'_6').addClass(id+'_7');},300);
+					setTimeout(function(){$('#'+id).removeClass(id+'_7').addClass(id+'_8');},350);
+					setTimeout(function(){$('#'+id).removeClass(id+'_8').addClass(id+'_9');},400);
+					setTimeout(function(){$('#'+id).removeClass(id+'_9').addClass(id+'_10');},450);
+					setTimeout(function(){$('#'+id).removeClass(id+'_10').addClass(id+'_11');},500);
+					
+					var i=parseInt( id.substr(5,1) );
+					cpt[ i ]=true;
+
+					var cc=0;
+					for(var k in cpt)
+						cc++;
+
+					var hint='CHOOSE '+(cc == 0 ? 'TWO' : 'ONE' )+' BOTTLE'+(cc == 2 ? 'S' : '' )
+
+					$('#toxicbonto-title')
+					.text( cc < 2 ? hint : '' )
+
+					if( cc == 2 )
+						result();
+				})();
+			});
+
+			// hide the cat
+
+		  } , t );
+
+		  /** 
+		   * step
+		   * too late
+		   */
+		  var endtimeout=window.setTimeout( function(){
+
+		  	$('div[id^=fiole]').each(function(){
+		  		id_=$(this).attr('id');
+		  		if( !$(this).hasClass(id_+'_1') )
+		  			return;
+				(function(){
+					var id=id_
+					setTimeout(function(){$('#'+id).removeClass(id+'_1').addClass(id+'_2');},50);
+					setTimeout(function(){$('#'+id).removeClass(id+'_2').addClass(id+'_3');},100);
+					setTimeout(function(){$('#'+id).removeClass(id+'_3').addClass(id+'_4');},150);
+					setTimeout(function(){$('#'+id).removeClass(id+'_4').addClass(id+'_5');},200);
+					setTimeout(function(){$('#'+id).removeClass(id+'_5').addClass(id+'_6');},250);
+					setTimeout(function(){$('#'+id).removeClass(id+'_6').addClass(id+'_7');},300);
+					setTimeout(function(){$('#'+id).removeClass(id+'_7').addClass(id+'_8');},350);
+					setTimeout(function(){$('#'+id).removeClass(id+'_8').addClass(id+'_9');},400);
+					setTimeout(function(){$('#'+id).removeClass(id+'_9').addClass(id+'_10');},450);
+					setTimeout(function(){$('#'+id).removeClass(id+'_10').addClass(id+'_11');},500);
+					
+					var i=parseInt( id.substr(5,1) );
+					cpt[ i ]=true;
+
+					var cc=0;
+					for(var k in cpt)
+						cc++;
+
+					var hint='CHOOSE '+(cc == 0 ? 'TWO' : 'ONE' )+' BOTTLE'+(cc == 2 ? 'S' : '' )
+
+					$('#toxicbonto-title')
+					.text( cc < 2 ? hint : '' )
+
+					if( cc == 2 )
+						result();
+				})();
+			});
+			result();
+		  } , 11000 );
+
+		  
+		function result(){
+		  	// show the cat
+		  	cat.place( whereIsTwo );
+
+		  	var won=false;
+
+		  	window.setTimeout( function(){
+
+			  	if( !cpt[whereIsTwo] ){
+			  		// dead
+			  		cat.dance();
+			  		won=true;
+			  		$("#victory_sound")[0].play();
+			  	}else{
+			  		// alive
+			  		cat.dead();
+
+			  		$('#toxicbonto-subsubsubhint')
+			  		.addClass('visible')
+			  	}
+
+
+			  	// up the boxes
+			  	boxes.goUp();
+			}, 500 )
+
+
+		  	window.setTimeout( function(){
+
+			  	bbq.endCB( won );
+
+			}, 1500 )
+		  	
+
+		  	window.clearTimeout( endtimeout );
+
+		  	// clear listener
+		  	$('div[id^=fiole]').unbind();
+		}
+		  
+        });
+
+        bbq.ready();
+    }; 
+
+    </script> 
+</body>
 </html>

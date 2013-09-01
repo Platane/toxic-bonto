@@ -1,0 +1,71 @@
+
+
+
+
+
+
+
+
+div.cadre{
+	border:1px solid black;
+	width:800px;
+	height:480px;
+}
+div.fiole1,div.fiole2,div.fiole3{
+	width: 93px;
+	height: 273px;
+	position: absolute;
+	background:url('../sprite/fioles_sprite.png');
+	background-repeat: no-repeat;
+	background-size: 1100px 1050px;
+	z-index: 20;
+	top:-76px;
+	overflow: hidden;
+	-webkit-transition:top 300ms ease;
+}
+div.fiole1.down,
+div.fiole2.down,
+div.fiole3.down{
+	top:60px;
+}
+div.fiole1{left:110px;}
+div.fiole2{left:370px;}
+div.fiole3{left:620px;}
+
+div.fiole1_1{background-position: -0px -0px;}
+div.fiole1_2{background-position: -100px -0px;}
+div.fiole1_3{background-position: -200px -0px;}
+div.fiole1_4{background-position: -300px -0px;}
+div.fiole1_5{background-position: -400px -0px;}
+div.fiole1_6{background-position: -500px -0px;}
+div.fiole1_7{background-position: -600px -0px;}
+div.fiole1_8{background-position: -700px -0px;}
+div.fiole1_9{background-position: -800px -0px;}
+div.fiole1_10{background-position: -900px -0px;}
+div.fiole1_11{background-position: -1000px -0px;}
+
+div.fiole2_1{background-position: -0px -350px;}
+div.fiole2_2{background-position: -100px -350px;}
+div.fiole2_3{background-position: -200px -350px;}
+div.fiole2_4{background-position: -300px -350px;}
+div.fiole2_5{background-position: -400px -350px;}
+div.fiole2_6{background-position: -500px -350px;}
+div.fiole2_7{background-position: -600px -350px;}
+div.fiole2_8{background-position: -700px -350px;}
+div.fiole2_9{background-position: -800px -350px;}
+div.fiole2_10{background-position: -900px -350px;}
+div.fiole2_11{background-position: -1000px -350px;}
+
+div.fiole3_1{background-position: -0px -700px;}
+div.fiole3_2{background-position: -100px -700px;}
+div.fiole3_3{background-position: -200px -700px;}
+div.fiole3_4{background-position: -300px -700px;}
+div.fiole3_5{background-position: -400px -700px;}
+div.fiole3_6{background-position: -500px -700px;}
+div.fiole3_7{background-position: -600px -700px;}
+div.fiole3_8{background-position: -700px -700px;}
+div.fiole3_9{background-position: -800px -700px;}
+div.fiole3_10{background-position: -900px -700px;}
+div.fiole3_11{background-position: -1000px -700px;}
+
+

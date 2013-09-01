@@ -1,0 +1,28 @@
+{
+    "id": "ToxicBonto",
+    "name": "Toxic Bonto",
+    "description": "You like Bonto, you'll like Toxic Bonto!",
+    "teamName": "",
+    "credits": [
+        {
+            "name": "Arthur Brongniart",
+            "job": "Lead Game Developer",
+            "url": "http://arthur-brongniart.fr/"
+        },
+        {
+            "name": "Bruno Galliez",
+            "job": "Game Developer",
+            "url": "http://www.larecreduweb.fr/"
+        },
+        {
+            "name": "K\uc3a9vin Aubert",
+            "job": "Art Director",
+            "url": ""
+        },
+        {
+            "name": "Pierrot Evrard",
+            "job": "Game Designer",
+            "url": "https://twitter.com/lxxps"
+        }
+    ]
+}
