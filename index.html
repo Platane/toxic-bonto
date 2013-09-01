@@ -44,6 +44,11 @@ html, body { width: 100%; height: 100%; margin:0; padding:0;}
 </head>
 <body>
 
+<audio id="victory_sound" >
+	<source src="./asset/sound/victory.mp3">
+</audio>
+
+
 <div id="toxicbonto-out">
 <div id="toxicbonto-in">
 <div id="toxicbonto-world">
@@ -228,6 +233,7 @@ html, body { width: 100%; height: 100%; margin:0; padding:0;}
 			  		// dead
 			  		cat.dance();
 			  		won=true;
+			  		$("#victory_sound")[0].play();
 			  	}else{
 			  		// alive
 			  		cat.dead();
